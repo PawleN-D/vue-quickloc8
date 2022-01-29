@@ -1,18 +1,19 @@
 <template>
   <SplashScreen :isLoading="isLoading" />
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <MapView />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
 import SplashScreen from './components/SplashScreen.vue'
+import MapView from './components/MapView.vue'
 
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
     SplashScreen,
+    MapView
   },
 
   data() {

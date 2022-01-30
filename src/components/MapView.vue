@@ -36,8 +36,8 @@ export default {
         this.map = new mapboxgl.Map({
           container: "map",
           style: "mapbox://styles/mapbox/streets-v11",
-          center: this.center,
-          zoom: 11,
+          center:  [0, 0],
+          zoom: 1,
         });
         let geocoder =  new MapboxGeocoder({
           accessToken: "pk.eyJ1IjoicGF3bGUtZCIsImEiOiJja3l6d3EycnUwMGVuMnducXV1dzMwZzV3In0.QNL3mW_7UNjoW6Vzbwd3iw",
@@ -172,5 +172,17 @@ export default {
 }
 .copy-btn:focus {
   outline: none;
+}
+
+.mapboxgl-ctrl-geocoder {
+    font-size: 18px;
+    line-height: 24px;
+    font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    min-width: 240px;
+    border-radius: 4px;
+    transition: width .25s, min-width .25s;
 }
 </style>

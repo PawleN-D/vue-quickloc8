@@ -1,19 +1,22 @@
 <template>
   <SplashScreen :isLoading="isLoading" />
   <MapView />
+  <MessagesView />
 </template>
 
 <script>
 
 import SplashScreen from './components/SplashScreen.vue'
 import MapView from './components/MapView.vue'
+import MessagesView from './components/MessagesView.vue'
 
 
 export default {
   name: 'App',
   components: {
     SplashScreen,
-    MapView
+    MapView,
+    MessagesView
   },
 
   data() {

@@ -13,9 +13,9 @@ export default {
 
 <style>
 .loader {
-  background-color: #63ab97;
+  background-color: #FF5722;
   bottom: 0;
-  color: white;
+  color: #FFCCBC;
   display: block;
   font-size: 32px;
   left: 0;

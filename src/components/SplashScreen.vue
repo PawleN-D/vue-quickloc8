@@ -1,6 +1,6 @@
 <template>
   <div :class="{ loader: true, fadeout: !isLoading }">
-      <img alt="Vue logo" src="../assets/Quicloc8-logo.png">
+      <img alt="Vue logo" class="logo" src="../assets/Quicloc8-logo.png">
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
 }
 
 .fadeout {
-  animation: fadeout 2s forwards;
+  animation: fadeout 3.5s forwards;
 }
 
 @keyframes fadeout {

@@ -2,8 +2,9 @@
   <div class="home">
     
     <MapView />
-    <router-link to="/messages">Messages</router-link>
+    
   </div>
+  <router-link to="/messages">Messages</router-link>
 </template>
 
 <script>

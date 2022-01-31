@@ -1,16 +1,15 @@
 <template>
-    <div>
+    <div class="m-3 p-3">
         <h2>Messages</h2>
-        <div :key="data.display" v-for="data in messages">
-            <h5>{{data.subject}}</h5>
-            <!-- <ul id="v-for-object" class="demo">
-                <li >
-                    {{ data.message }}
-                </li>
-            </ul> -->
-            <b-list-group>
-                <b-list-group-item button>{{ data.message }}</b-list-group-item>
-            </b-list-group>
+        <div :key="index" v-for="(data, index) in messages" class="border mb-2  p-3" >
+            <div class="row w-75">
+                <div class="col- text-truncate">
+                    <h5 class="text-left">{{data.subject}}</h5>
+                    <b-list-group>
+                        <b-list-group-item button>{{ data.message }}</b-list-group-item>
+                    </b-list-group>
+                </div>
+            </div>
         </div>
     </div>
 </template>

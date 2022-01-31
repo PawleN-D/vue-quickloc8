@@ -1,8 +1,9 @@
 <template>
   <div class="main">
+    <h3>Your Available Taxis</h3>
     <div class="flex">
       <!-- Map Display here -->
-      <div class="map-holder">
+      <div class="map-holder bt-5">
         <div id="map"></div>
       </div>
     </div>
@@ -10,10 +11,11 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import coordinates from "../data/vehicleCoordinates.json"
 
 export default {
   data() {
@@ -31,18 +33,19 @@ export default {
 
   methods: {
     async createMap() {
+      console.log
       try {
         mapboxgl.accessToken = "pk.eyJ1IjoicGF3bGUtZCIsImEiOiJja3l6d3EycnUwMGVuMnducXV1dzMwZzV3In0.QNL3mW_7UNjoW6Vzbwd3iw";
         this.map = new mapboxgl.Map({
           container: "map",
           style: "mapbox://styles/mapbox/streets-v11",
           center:  [0, 0],
-          zoom: 1,
+          zoom: 2,
         });
         let geocoder =  new MapboxGeocoder({
           accessToken: "pk.eyJ1IjoicGF3bGUtZCIsImEiOiJja3l6d3EycnUwMGVuMnducXV1dzMwZzV3In0.QNL3mW_7UNjoW6Vzbwd3iw",
           mapboxgl: mapboxgl,
-          marker: false,
+          marker: true,
         });
 
   this.map.addControl(geocoder);
@@ -68,10 +71,13 @@ export default {
    async getLocation() {
       try {
         this.loading = true;
-        const response = await axios.get(
-          `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.center[0]},${this.center[1]}.json?access_token=${this.access_token}`
-        );
+        // const response = await axios.get(
+        //   `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.center[0]},${this.center[1]}.json?access_token=${this.access_token}`
+        // );
+        const response = coordinates;
+        console.log(response);
         this.loading = false;
+        // this.location = response.data.features[0].place_name;
         this.location = response.data.features[0].place_name;
       } catch (err) {
         this.loading = false;
@@ -90,99 +96,31 @@ export default {
 
 <style scoped>
 .main {
-  padding: 45px 50px;
-}
-.flex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.map-holder {
-  width: 65%;
-}
-#map {
-  height: 70vh;
-}
-.dislpay-arena {
-  background: #ffffff;
-  box-shadow: 0px -3px 10px rgba(0, 58, 78, 0.1);
-  border-radius: 5px;
-  padding: 20px 30px;
-  width: 25%;
-}
-.coordinates-header {
-  margin-bottom: 50px;
-}
-.coordinates-header h3 {
-  color: #1f2a53;
-  font-weight: 600;
-}
-.coordinates-header p {
-  color: rgba(13, 16, 27, 0.75);
-  font-weight: 600;
-  font-size: 0.875rem;
-}
-.form-group {
-  position: relative;
-}
-.location-control {
-  height: 30px;
-  background: #ffffff;
-  border: 1px solid rgba(31, 42, 83, 0.25);
-  box-shadow: 0px 0px 10px rgba(73, 165, 198, 0.1);
-  border-radius: 4px;
-  padding: 0px 10px;
-  width: 90%;
-}
-.location-control:focus {
-  outline: none;
-}
-.location-btn {
-  margin-top: 15px;
-  padding: 10px 15px;
-  background: #d80739;
-  box-shadow: 0px 4px 10px rgba(73, 165, 198, 0.1);
-  border-radius: 5px;
-  border: 0;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-.location-btn:focus {
-  outline: none;
-}
-.disabled {
-  background: #db7990;
-  cursor: not-allowed;
-}
-.copy-btn {
-  background: #f4f6f8 0% 0% no-repeat padding-box;
-  border: 1px solid #f4f6f8;
-  border-radius: 0px 3px 3px 0px;
-  position: absolute;
-  color: #5171ef;
-  font-size: 0.875rem;
-  font-weight: 500;
-  height: 30px;
-  padding: 0px 10px;
-  cursor: pointer;
-  right: 3.5%;
-  top: 5%;
-}
-.copy-btn:focus {
-  outline: none;
+  margin: 5px;
 }
 
-.mapboxgl-ctrl-geocoder {
-    font-size: 18px;
-    line-height: 24px;
-    font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
-    position: relative;
-    background-color: #fff;
-    width: 100%;
-    min-width: 240px;
-    border-radius: 4px;
-    transition: width .25s, min-width .25s;
+.mapboxgl-ctrl-geocoder--input {
+    font: inherit;
+    width: 59%;
+    border: 0;
+    background-color: red;
+    margin: 0;
+    height: 50px;
+    color: #404040;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 6px 45px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
+
+.map-holder {
+  width: 100%;
+}
+#map {
+  height: 80vh;
+}
+
+
+
 </style>
